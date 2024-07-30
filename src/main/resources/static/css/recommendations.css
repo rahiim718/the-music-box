@@ -1,0 +1,76 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: black;
+    color: white;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+h1 {
+    border-bottom: 10px solid rgb(11, 9, 9); /* Adjust color as needed */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.suggested-artist-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* This ensures that items in the container are centered. */
+}
+
+.artist {
+    flex: 100; 
+    box-sizing: border-box;
+    margin: 10px;
+    text-align: center;
+    border-bottom: 2px solid white; /* Adjust color as needed */
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.artist img {
+    height: 192px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.bio {
+    max-width: 60%; 
+    padding: 10px;  
+    height: 150px;  
+    overflow-y: auto;  
+    margin: 20px auto;
+} 
+
+footer {
+    text-align: center;
+    padding: 1em 0;
+    background-color: rgba(0, 0, 0, 0.5); 
+    color: white;
+    }
+
+
+body.recommendations {
+    background-color: black;
+    color: black(12, 12, 12);
+}
+
+h1.mt-4 {
+    color: white;
+    font-size: 50px; /* You can adjust the font size as needed */
+    text-align: center;
+}
+
+.back-arrow {
+    width: 50px; /* Set the width of the arrow image as needed */
+    height: 50px; /* Set the height of the arrow image as needed */
+    margin-bottom: 10px; /* Adjust the spacing between the image and text */
+}

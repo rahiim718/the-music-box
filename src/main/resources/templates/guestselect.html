@@ -1,0 +1,106 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Select Artists</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/app.js" defer></script>
+</head>
+<body class="select-page">
+    <div class="wrapper">
+    <h1>Hello, <span th:text="${firstName.firstName}"></span>!</h1>
+    <h1>Welcome Guest to Our Feature Artists!</h1>
+    <h3>Select up to 3 of your favorite artists below:</h3>
+    <form action="/recommendations" method="post">
+        <div class="artist-container">
+            <div class="artist">
+                <img src="/images/beyonce.webp" alt="Beyonce" width="200">
+                <input type="checkbox" id="beyonce" name="artist" value="Beyonce">
+                <label for="beyonce">Beyonce</label>
+            </div>
+
+            <div class="artist">
+                <img src="/images/drake.webp" alt="Drake">
+                <input type="checkbox" id="drake" name="artist" value="Drake">
+                <label for="drake">Drake</label>
+            </div>
+
+            <div class="artist">
+                <img src="/images/badbunny.webp" alt="Bad Bunny">
+                <input type="checkbox" id="badbunny" name="artist" value="Bad Bunny">
+                <label for="badbunny">Bad Bunny</label>
+            </div>    
+
+            <div class="artist">
+                <img src="/images/theweeknd.jpeg" alt="The Weeknd">
+                <input type="checkbox" id="theweeknd" name="artist" value="The Weeknd">
+                <label for="theweeknd">The Weeknd</label>
+            </div>
+
+            <div class="artist">
+                <img src="/images/kanebrown.jpeg" alt="Kane Brown">
+                <input type="checkbox" id="kanebrown" name="artist" value="Kane Brown">
+                <label for="kanebrown">Kane Brown</label>
+            </div>
+
+            <div class="artist">
+                <img src="/images/mgk.jpeg" alt="MGK">
+                <input type="checkbox" id="mgk" name="artist" value="MGK">
+                <label for="mgk">MGK</label>
+            </div>
+        </div>    
+        <div class="submit-button">
+            <input type="submit" value="Get Recommendations">
+        </div>
+    </div>
+    </form>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Select Artists</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/guest.js" defer></script>
+</head>
+<body class="select-page">
+    <div class="wrapper">
+    <!-- <h1>Hello, <span th:text="${firstName}"></span>!</h1> -->
+    <div style="text-align: center;">
+        <img th:src="@{images/GuestEnter.png}" alt="GuestEnter" class="section-image" style="margin: 40px; display: block;">
+    </div>
+    <div style="text-align: center;">
+        <img th:src="@{images/selectone.png}" alt="select" class="section-image" style="margin: 40px; display: block;">
+    </div>
+    <!-- <h3>Select up to 3 of your favorite artists below:</h3> -->
+    <form id="artistForm" method="post" action="/recommendations" autocomplete="off" enctype="application/x-www-form-urlencoded">
+        <div class="artist-container">
+            <div class="artist" th:each="artist : ${featuredArtists}">
+                <label>
+                    <div class="image-container">
+                        <img th:src="@{/images/{imageUrl}(imageUrl=${artist.imageUrl})}" alt="" width="200">
+                        <div class="genre" th:text="${artist.genre}"></div>
+                    </div>
+                    <input type="checkbox" 
+                        th:id="${artist.name}" 
+                        th:name="artist" 
+                        th:value="${artist.name + '|' + artist.genre}" 
+                        th:data-genre="${artist.genre}" 
+                        style="display: none;">
+                </label>
+                <div class="artist-name" th:text="${artist.name}">Artist</div>
+            </div>
+        </div>
+        <!-- <div class="submit-button">
+            <input type="submit" value="Get Recommendations">
+        </div> -->
+        <div class="submit-button">
+            <button type="submit" form="artistForm" style="background: url('images/recommendationbutton.png') no-repeat; width: 300px; height: 100px; border: none; cursor: pointer;">
+            </button>
+        </div>
+    </form>
+    <footer>
+        <p>&copy; 2023 The Music Box | All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

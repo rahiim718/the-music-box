@@ -1,0 +1,111 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Artist Recommendations</title>
+    <link rel="stylesheet" href="/css/recommendstyles.css">
+</head>
+<body class="recommendations">
+    <div class="wrapper">
+        <h1>Your Recommendations</h1>
+        <div class="suggested-artist-container" th:each="artist : ${recommendations}">
+            <div class="artist">
+                <h2 th:text="${artist.name} + ' - ' + ${artist.genres}">Artist Name - Genre</h2>
+                <img th:src="${artist.imgUrl}" alt="" width="200">
+                <div class="bio">
+                    <p th:text="${artist.description}">Artist Biography</p>
+                </div>
+                <div class="video">
+                    <iframe width="560" height="315" th:src="${artist.musicUrl}" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Team Rhyme Schemes. All Rights Reserved.</p>
+    </footer>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Artist Recommendations</title>
+    <link rel="stylesheet" href="/css/recommendstyles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body class="recommendations">
+    <div class="container">
+        <h1 class="mt-4">Your Recommendations</h1>
+        <div class="row">
+            <div class="col-md-4" th:each="artist : ${recommendations}">
+                <div class="card mb-4">
+                    <img th:src="${artist.imgUrl}" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${artist.name} + ' - ' + ${artist.genres}">Artist Name - Genre</h5>
+                        <p class="card-text" th:text="${artist.description}">Artist Biography</p>
+                    </div>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" th:src="${artist.musicUrl}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="mt-4">
+        <p class="text-center">&copy; 2023 Team Rhyme Schemes. All Rights Reserved.</p>
+    </footer>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Artist Recommendations</title>
+    <link rel="stylesheet" href="/css/recommendations.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body class="recommendations">
+    <div class="container">
+        <div style="text-align: center;">
+            <img th:src="@{images/Enter (5).png}" alt="YourRecommendations" class="section-image" style="margin: 0 auto; display: block;">
+        </div>
+        <!-- <h1 class="mt-4">Your Recommendations</h1> -->
+        <div class="row">
+            <div class="col-md-4" th:each="artist : ${recommendations}">
+                <div class="card mb-4">
+                    <img th:src="${artist.imgUrl}" class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${artist.name + ' - ' + artist.genres}">Artist Name - Genre</h5>
+                        <p class="card-text" th:text="${artist.description}">Artist Biography</p>
+                    </div>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" th:src="${artist.musicUrl}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align: center;">
+    <a th:href="@{/}" class="back-to-home">
+        <img src="/images/backarrow.png" alt="Back to Homepage" class="back-arrow">
+    </a>
+    </div>
+    <footer class="text-center text-white mt-auto">
+        <div class="footer-content">
+            <p>&copy; 2023 The Music Box | All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+

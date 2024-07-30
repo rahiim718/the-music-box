@@ -1,0 +1,43 @@
+-Fave New Artists class
+    -Genres
+        -2 new artists per genre
+    -Biographies
+    -Links to music
+    -genre needs to be an attribute of the artist
+
+-Featured Artists Class is by Genres
+    -Name (1 per genre)
+        Featured Artists are 
+        "Beyonce" - R&B - King
+        "Drake" - Hip Hop - Winston
+        "The Weekend" - Pop - Kevin
+        "Kane Brown" - Country - Denise
+        "MGK" - Rock - Kent
+        "Bad Bunny" - Reggaeton - Tristin
+    -Picture
+    -genre needs to be an attribute of the artist
+
+
+- Genres Class - Can be ommitted
+    -Hip Hop
+    -Rock
+    -Country
+    -R&B
+    -Pop
+    -Reggaeton
+
+-Welcome Page Class
+    -Ask for user's name
+    -Welcome message
+    -Option to (sign-up or browse as guest)
+    -Email address
+
+-Database\Configuration Folder
+    -Load Database
+        -Biographies
+        -Links to music
+        -Featured artists names
+        -Artist photos
+
+
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Sign Up Form</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/css/landingformstyles.css" />
+</head>
+<body>
+
+  <audio loop autoplay>
+      <source src="\images\dont-stop-me.mp3" type="audio/mp3">
+  </audio>
+  <div class="container my-2">
+    <!-- <form action="/select" method="get"> -->
+      <form action="/landingpageform" method="post">
+      <div class="form-group" style="margin-top: 50px;">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" required class="form-control" placeholder="First Name"/><br />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" required class="form-control" placeholder="Last Name"/><br />
+      </div>
+      <div class="form-group">
+        <label for="emailAddress">Email Address</label>
+        <input type="email" name="emailAddress" required class="form-control" placeholder="Email Address"/><br />
+      </div>
+        <div class="form-group">
+            <label for="userPassword">Create Password</label>
+            <input type="password" name="userPassword" required class="form-control" placeholder="Password"/><br />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  </div>
+  <div class="video-container">
+    <video autoplay muted loop id="background-video">
+        <source src="/images/Audio_Seprectrum1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+  <footer class="text-center text-white">
+    <div class="footer-content">
+        <p>&copy; 2023 The Music Box | All Right Reserved.
+    </p>
+    </div>
+    </div>
+</footer>
+</body>
+</html>

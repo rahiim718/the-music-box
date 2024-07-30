@@ -1,0 +1,136 @@
+GENERAL STYLING
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: black;
+    color: white;
+}
+
+/* CONTAINER STYLING */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensure that it occupies at least the full height of the viewport */
+}
+
+h1 {
+    margin-bottom: 20px; /* Add space below the header */
+}
+
+/* ARTIST CONTAINER STYLING */
+.artist-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center items horizontally */
+}
+
+/* ARTIST ITEM STYLING */
+.artist {
+    flex: 100; 
+    box-sizing: border-box;
+    margin: 10px;
+    text-align: center;
+    position: relative; /* Establish a positioning context for children */
+}
+
+/* ARTIST IMAGE STYLING */
+.artist img {
+    width: 100%; 
+    height: 192px;
+    object-fit: cover;
+    border-radius: 20rem;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+    position: relative;
+    z-index: 2; /* Ensure that the image stays on top of the :before pseudo-element */
+}
+
+/* HOVER & SELECTED STATE STYLES */
+.artist img:hover, 
+.artist img.selected {
+    filter: grayscale(0%);
+}
+
+/* .artist:hover img {
+    transform: translateY(-5%);
+} */
+
+/* ARTIST IMAGE CONTAINER STYLING */
+.image-container {
+    height: 192px;
+    position: relative;
+    background-color: black;
+    border-radius: 20rem;
+}
+
+.image-container::before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0;
+    background-color: black;
+    transition: height 0.3s ease;
+    z-index: 1; /* Position underneath the image but above the container background */
+}
+
+/* GENRE TAG STYLING */
+.genre {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    z-index: 3; /* Position above image and :before pseudo-element */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* HOVER STATE STYLES FOR GENRE AND NAME */
+.artist:hover .genre {
+    visibility: visible;
+    opacity: 1;
+}
+
+.artist:hover .artist-name {
+    visibility: hidden;
+}
+
+/* SUBMIT BUTTON STYLING */
+.submit-button {
+    margin-top: 20px;
+    text-align: center; 
+}
+
+/* FOOTER STYLING */
+footer {
+    text-align: center;
+    padding: 1em 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+h1 {
+    font-size: 3em; /* Adjust the font size as needed */
+    text-align: center; /* Center align the text */
+    color: #fff; /* Set the text color to white */
+    text-transform: uppercase; /* Convert text to uppercase for neon effect */
+
+    /* Create neon effect using text-shadow */
+    text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff, 0 0 50px #0ff, 0 0 60px #0ff, 0 0 70px #0ff;
+
+    /* Optionally, add font-family and other styles here */
+}
+
+
+

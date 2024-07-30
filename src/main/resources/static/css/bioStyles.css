@@ -1,0 +1,72 @@
+footer {
+    /* position: absolute; */
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    /* Optional: add a background color with some transparency */
+    color: white;
+    padding: 10px 0;
+}
+/* Set the background color to black */
+body {
+    background-color: black;
+}
+
+/* Set the text color to white */
+body,
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+/* Set other elements to appropriate styles */
+/* For example, buttons */
+.btn-primary {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+.jumbotron {
+    background-color: rgb(0, 0, 0); /* Change the background color to black */
+    height: 360px; 
+    color: white; /* Change the text color to white */
+  }
+  .logo {
+	width: 235px; /* Adjust the logo size as needed */
+	height: 235px; /* Adjust the logo size as needed */
+}
+
+#video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    opacity: 0.6; /* You can adjust opacity as needed */
+}
+
+.back-to-home {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #fff; /* Adjust the color as needed */
+}
+
+.back-arrow {
+    width: 50px; /* Set the width of the arrow image as needed */
+    height: 50px; /* Set the height of the arrow image as needed */
+    margin-bottom: 10px; /* Adjust the spacing between the image and text */
+}
+/* Increase the font size for <h3> elements */
+h3 {
+    font-size: 35px; /* Adjust the font size as needed */
+}
+
+/* Increase the font size for <p> elements */
+p {
+    font-size: 20px; /* Adjust the font size as needed */
+}
+

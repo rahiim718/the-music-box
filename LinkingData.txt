@@ -1,0 +1,15 @@
+Once on the FeaturedArtist page the user needs to be able to select 3 featured artist, which represents the different genres
+A suggestion page should appear that gives 2 FaveNewArtist for each of the 3 featured artist selected. The 3 featured artist is a representation of the genres
+There is a Genre class that was created that shows the different genre and there was a repository and controller created as well but they opted not to use it.
+Data is being pulled from the database which is pulling the content from a text file which list the artist and their genre
+I know that this is going to be a one to many relationship I'm just unsure of how to do this without having the genre class
+ 
+ The featured artist controller needs to link to the get recommendations/recommendations html file
+ the featured artist controller needs to pull the database for the featured artists and fave new artists
+ The fave new artist controller needs to populate the data for the fave new artists 
+
+ Recommedations html needs to be designed
+
+ Select html page is not working
+
+ one featured artist to many fave new artist

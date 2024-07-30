@@ -1,0 +1,88 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Select Artists</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/app.js" defer></script>
+</head>
+<body class="select-page">
+    <div class="wrapper">
+    <h1>Hello, <span th:text="${firstName.firstName}"></span>!</h1>
+    <h3>Select up to 3 of your favorite artists below:</h3>
+    <form id="artistForm" method="post" action="/recommendations" autocomplete="off" enctype="application/x-www-form-urlencoded">
+        <div class="artist-container">
+            <div class="artist" th:each="artist : ${featuredArtists}">
+                <label>
+                    <div class="image-container">
+                        <img th:src="@{/images/{imageUrl}(imageUrl=${artist.imageUrl})}" alt="" width="200">
+                        <div class="genre" th:text="${artist.genre}"></div>
+                    </div>
+                    <input type="checkbox" 
+                        th:id="${artist.name}" 
+                        th:name="artist" 
+                        th:value="${artist.name + '|' + artist.genre}" 
+                        th:data-genre="${artist.genre}" 
+                        style="display: none;">
+                </label>
+                <div class="artist-name" th:text="${artist.name}">Artist</div>
+            </div>
+        </div>
+        <div class="submit-button">
+            <button type="submit" form="artistForm" style="background: url('images/recommendationbutton.png') no-repeat; width: 300px; height: 100px; border: none; cursor: pointer;">
+            </button>
+        </div>
+    </form>
+    <footer>
+        <p>&copy; 2023 Team Rhyme Schemes. All Rights Reserved.</p>
+    </footer>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Select Artists</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/app.js" defer></script>
+</head>
+<body class="select-page">
+    <div class="wrapper">
+    <!-- <h1>WELCOME BACK, <span th:text="${firstName.firstName}"></span> TO FEATURES ARTISTS!</h1> -->
+    <h1>WELCOME BACK, <span th:text="${firstName}"></span> TO FEATURES ARTISTS!</h1>
+    <div style="text-align: center;">
+        <img th:src="@{images/select3.png}" alt="select" class="section-image" style="margin: 40px; display: block;">
+    </div>
+    <!-- <h3>Select up to 3 of your favorite artists below:</h3> -->
+    <form id="artistForm" method="post" action="/recommendations" autocomplete="off" enctype="application/x-www-form-urlencoded">
+        <div class="artist-container">
+            <div class="artist" th:each="artist : ${featuredArtists}">
+                <label>
+                    <div class="image-container">
+                        <img th:src="@{/images/{imageUrl}(imageUrl=${artist.imageUrl})}" alt="" width="200">
+                        <div class="genre" th:text="${artist.genre}"></div>
+                    </div>
+                    <input type="checkbox" 
+                        th:id="${artist.name}" 
+                        th:name="artist" 
+                        th:value="${artist.name + '|' + artist.genre}" 
+                        th:data-genre="${artist.genre}" 
+                        style="display: none;">
+                </label>
+                <div class="artist-name" th:text="${artist.name}">Artist</div>
+            </div>
+        </div>
+        <div class="submit-button">
+            <button type="submit" form="artistForm" style="background: url('images/recommendationbutton.png') no-repeat; width: 300px; height: 100px; border: none; cursor: pointer;">
+            </button>
+        </div>
+    </form>
+    <footer>
+        <p>&copy; 2023 The Music Box | All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+    </div>
+</body>
+</html>
+
+

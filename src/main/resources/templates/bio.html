@@ -1,0 +1,114 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>About</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/bioStyles.css" />
+</head>
+<body>
+    <video autoplay loop muted playsinline id="video-bg">
+        <source src="/images/BlackWhite.mp4" type="video/mp4">
+    </video>
+
+<div class="jumbotron text-center">
+    <img src="/images/TRSlogo.png" alt="Your Logo" class="logo">
+    <h1></h1>
+</div>
+
+<div class="container">
+    <div class="row">
+    <div class="col-sm-4">
+        <h3>Our Journey</h3>
+        <p>
+        After an intense 4 months of rigid course work and challenging coding projects, 
+        this group was formed from the fire of individuals that were refined and able 
+        to preserver to the end. While many others were lost along the way, each of us 
+        were placed into a combined Code Jam due to the low numbers of our original 
+        cohort and having met for the first time we each placed ourselves in an open 
+        frame of mind. Not knowing what to expect we ALL were willing to devote as much 
+        time as needed in order to deliver an ideal product. Met with strenuous obstacles 
+        of learning another software system as well as panning out the different coding 
+        objectives, full-time employment with Amazon and learning one another we each 
+        were able to bring our abilities to the table in order to produce “The Music Box”. 
+        “The Music Box” was a brilliant idea presented by our Product Manager, Tristan Eason. 
+        Tristan presented his idea to us along with his color schemes for the design and 
+        instantly the team saw his vision and produced the brilliant work you are seeing 
+        here today. Through adversity we all have made it to the finish line and would like 
+        to welcome you to enjoy….The Music Box.</p>
+        </div>
+    </div>
+</div>
+<a th:href="@{/}" class="back-to-home">
+    <img src="/images/backarrow.png" alt="Back to Homepage" class="back-arrow">
+</a>
+<footer class="text-center text-white">
+    <div class="footer-content">
+        <p>&copy; 2023 Team Rhyme Schemes | All Right Reserved</p>
+    </div>
+</footer>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    
+    <!-- jQuery and Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bioStyles.css" />
+</head>
+<body>
+    <video autoplay loop muted playsinline id="video-bg">
+        <source src="/images/BlackWhite.mp4" type="video/mp4">
+    </video>
+
+    <div class="jumbotron text-center">
+        <img src="/images/TMBox.png" alt="Your Logo" class="logo">
+    </div>
+    <div class="container text-center"> <!-- Center content within a container -->
+        <img th:src="@{images/OurJourney.png}" alt="OurJourney" class="section-image" style="margin: 50px auto; display: block;"> <!-- Center the image using 'auto' margin -->
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <!-- <h3>Our Journey</h3> -->
+                <p>
+                    After an intense 4 months of rigorous coursework and challenging coding projects, this group was formed from individuals who persevered to the end. While many others were lost along the way, each of us was placed into a combined Code Jam due to the low numbers of our original cohort. Meeting for the first time, we each placed ourselves in an open frame of mind. Not knowing what to expect, we were all willing to devote as much time as needed to deliver an ideal product.
+                </p>
+                <p>
+                    Met with strenuous obstacles of learning another software system as well as planning out the different coding objectives, full-time employment with Amazon, and learning one another, we each brought our abilities to the table to produce “The Music Box.” “The Music Box” was a brilliant idea presented by our Product Manager, Tristan Eason. Tristan presented his idea to us along with his color schemes for the design, and instantly the team saw his vision and produced the brilliant work you are seeing here today. Through adversity, we all made it to the finish line and would like to welcome you to enjoy… The Music Box.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <a th:href="@{/}" class="back-to-home">
+        <img src="/images/backarrow.png" alt="Back to Homepage" class="back-arrow">
+    </a>
+    
+    <footer class="text-center text-white mt-auto">
+        <div class="footer-content">
+            <p>&copy; 2023 The Music Box | All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
+

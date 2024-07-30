@@ -1,0 +1,20 @@
+/* Set the background color to black */
+body {
+    background-color: black;
+}
+
+/* Set the text color to white */
+body,
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+/* Set other elements to appropriate styles */
+/* For example, buttons */
+.btn-primary {
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+/* Override any other Bootstrap styles as needed */
