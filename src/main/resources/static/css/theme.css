@@ -203,36 +203,40 @@ h1, h2, h3 { font-family: var(--font-display); }
 
 /* ---------- Hero (landing page) ---------- */
 
+/* The welcome video has its own "Welcome To The Music Box" title card
+   baked into the middle of the frame. Rather than laying our own copy
+   on top of it (which hid the video's own text behind ours), the video
+   gets its own banner where that text stays fully visible, and our
+   headline copy sits in a separate band right below it - so both are
+   always readable, at any screen size, with nothing overlapping. */
+
+.hero-banner {
+  position: relative;
+  width: 100%;
+  height: clamp(280px, 46vw, 480px);
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.hero-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .hero {
   position: relative;
-  min-height: calc(100vh - var(--header-height));
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  overflow: hidden;
-  padding: 60px 24px;
-}
-
-.hero-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(11, 11, 16, 0.5) 0%, rgba(11, 11, 16, 0.88) 100%);
-  z-index: 1;
+  padding: 56px 24px 72px;
+  background: var(--bg);
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
   max-width: 640px;
   display: flex;
   flex-direction: column;

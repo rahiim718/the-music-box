@@ -11,11 +11,13 @@
 <body>
 <div th:replace="~{fragments/nav :: nav}"></div>
 
-<section class="hero">
+<section class="hero-banner">
     <video autoplay muted loop playsinline class="hero-video">
         <source th:src="@{/images/BlackNGoldWelcome.mp4}" type="video/mp4">
     </video>
-    <div class="hero-overlay"></div>
+</section>
+
+<section class="hero">
     <div class="hero-content">
         <span class="hero-eyebrow">Your musical matchmaker</span>
         <h1 class="hero-title">Discover your next favorite artist</h1>
