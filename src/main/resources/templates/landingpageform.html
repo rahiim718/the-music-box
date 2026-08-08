@@ -11,6 +11,10 @@
 <body>
 <div th:replace="~{fragments/nav :: nav}"></div>
 
+<audio id="bg-music" loop autoplay>
+    <source th:src="@{/images/dont-stop-me.mp3}" type="audio/mp3">
+</audio>
+
 <section class="form-page">
     <video autoplay muted loop playsinline class="form-page-bg">
         <source th:src="@{/images/Audio_Seprectrum1.mp4}" type="video/mp4">
@@ -42,5 +46,6 @@
 </section>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
+<script th:src="@{/js/bg-music.js}" defer></script>
 </body>
 </html>
