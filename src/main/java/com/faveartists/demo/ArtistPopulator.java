@@ -1,8 +1,10 @@
 package com.faveartists.demo;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -34,7 +36,8 @@ public class ArtistPopulator implements CommandLineRunner {
         String description = "";
         String musicUrl = "";
         String imgUrl = "";
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) { // reads data txt file
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8))) { // reads data txt file, explicit UTF-8 so accented characters (e.g. Rosalía) aren't corrupted by the JVM's default platform charset
             String line;
             while ((line = br.readLine()) != null) { // reads line by to separate new artists
                 String[] parts = line.split("\\+"); // splits variables with a "+"
@@ -60,7 +63,8 @@ public class ArtistPopulator implements CommandLineRunner {
 
         filePath = "src/main/resources/FeaturedArtistData.txt"; //creating separate path to featured artist data
         String genre = ""; // declaring attribute
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) { // reading featured artist data txt
+        try (BufferedReader br = new BufferedReader(
+                new InputStreamReader(new FileInputStream(filePath), StandardCharsets.UTF_8))) { // reading featured artist data txt, explicit UTF-8
             String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\+");
