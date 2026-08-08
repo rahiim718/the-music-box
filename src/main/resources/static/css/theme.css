@@ -455,7 +455,6 @@ h1, h2, h3 { font-family: var(--font-display); }
    every card, aligned across a row regardless of description length. */
 .rec-card-video {
   position: relative;
-  width: 100%;
   aspect-ratio: 16 / 9;
   margin: 16px 22px 22px;
   background-color: #000;
