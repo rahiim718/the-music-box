@@ -22,11 +22,11 @@
         <div class="rec-card-body">
             <h2 th:text="${artist.name + ' — ' + artist.genres}">Artist Name — Genre</h2>
             <p th:text="${artist.description}">Artist biography</p>
-            <div class="rec-card-video" th:data-embed="${artist.musicUrl}">
-                <button type="button" class="video-play-btn" th:attr="aria-label='Play video: ' + ${artist.name}">
-                    <span class="play-icon">&#9658;</span>
-                </button>
-            </div>
+        </div>
+        <div class="rec-card-video" th:data-embed="${artist.musicUrl}">
+            <button type="button" class="video-play-btn" th:attr="aria-label='Play video: ' + ${artist.name}">
+                <span class="play-icon">&#9658;</span>
+            </button>
         </div>
     </div>
 </div>
