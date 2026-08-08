@@ -433,17 +433,31 @@ h1, h2, h3 { font-family: var(--font-display); }
   flex-direction: column;
 }
 
-.rec-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+/* object-position: top keeps the top of the source photo intact and
+   crops from the bottom instead of cropping evenly top+bottom. Artist
+   photos are headshots/portraits with the face near the top of the
+   frame, so this keeps faces fully visible instead of cutting into them. */
+.rec-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: top; }
 
-.rec-card-body { padding: 22px 22px 6px; display: flex; flex-direction: column; gap: 10px; }
+.rec-card-body {
+  flex: 1 1 auto;
+  padding: 22px 22px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 .rec-card-body h2 { font-size: 1.05rem; margin: 0; }
 .rec-card-body p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.55; margin: 0; }
 
+/* Sits outside rec-card-body, which has flex:1 and grows to fill the
+   card's full height (cards in a grid row are stretched to equal
+   height). That pushes the video block down to the bottom edge of
+   every card, aligned across a row regardless of description length. */
 .rec-card-video {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  margin-top: 16px;
+  margin: 16px 22px 22px;
   background-color: #000;
   background-size: cover;
   background-position: center;
