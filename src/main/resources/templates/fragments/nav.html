@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="nav" class="site-header">
+    <div class="site-header-inner">
+        <a th:href="@{/}" class="brand">
+            <img th:src="@{/images/TMBox.png}" alt="The Music Box" class="brand-logo">
+            <span class="brand-name">The Music Box</span>
+        </a>
+        <nav class="site-nav">
+            <a th:href="@{/}">Home</a>
+            <a th:href="@{/bio}">Our Story</a>
+            <a th:href="@{/about}">Credits</a>
+            <a th:href="@{/signup}" class="nav-cta-ghost">Sign Up</a>
+            <a th:href="@{/signin}" class="nav-cta">Sign In</a>
+        </nav>
+        <button type="button" class="nav-toggle" aria-label="Toggle navigation"
+                onclick="document.querySelector('.site-nav').classList.toggle('open')">&#9776;</button>
+    </div>
+</header>
+</body>
+</html>

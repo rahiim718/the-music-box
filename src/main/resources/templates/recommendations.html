@@ -1,111 +1,39 @@
-<!-- <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Artist Recommendations</title>
-    <link rel="stylesheet" href="/css/recommendstyles.css">
-</head>
-<body class="recommendations">
-    <div class="wrapper">
-        <h1>Your Recommendations</h1>
-        <div class="suggested-artist-container" th:each="artist : ${recommendations}">
-            <div class="artist">
-                <h2 th:text="${artist.name} + ' - ' + ${artist.genres}">Artist Name - Genre</h2>
-                <img th:src="${artist.imgUrl}" alt="" width="200">
-                <div class="bio">
-                    <p th:text="${artist.description}">Artist Biography</p>
-                </div>
-                <div class="video">
-                    <iframe width="560" height="315" th:src="${artist.musicUrl}" frameborder="0" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-    <footer>
-        <p>&copy; 2023 Team Rhyme Schemes. All Rights Reserved.</p>
-    </footer>
-</body>
-</html> -->
-
-<!-- <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Artist Recommendations</title>
-    <link rel="stylesheet" href="/css/recommendstyles.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body class="recommendations">
-    <div class="container">
-        <h1 class="mt-4">Your Recommendations</h1>
-        <div class="row">
-            <div class="col-md-4" th:each="artist : ${recommendations}">
-                <div class="card mb-4">
-                    <img th:src="${artist.imgUrl}" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${artist.name} + ' - ' + ${artist.genres}">Artist Name - Genre</h5>
-                        <p class="card-text" th:text="${artist.description}">Artist Biography</p>
-                    </div>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" th:src="${artist.musicUrl}" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <footer class="mt-4">
-        <p class="text-center">&copy; 2023 Team Rhyme Schemes. All Rights Reserved.</p>
-    </footer>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Artist Recommendations</title>
-    <link rel="stylesheet" href="/css/recommendations.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Recommendations | The Music Box</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
 </head>
-<body class="recommendations">
-    <div class="container">
-        <div style="text-align: center;">
-            <img th:src="@{images/Enter (5).png}" alt="YourRecommendations" class="section-image" style="margin: 0 auto; display: block;">
-        </div>
-        <!-- <h1 class="mt-4">Your Recommendations</h1> -->
-        <div class="row">
-            <div class="col-md-4" th:each="artist : ${recommendations}">
-                <div class="card mb-4">
-                    <img th:src="${artist.imgUrl}" class="card-img-top" alt="">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${artist.name + ' - ' + artist.genres}">Artist Name - Genre</h5>
-                        <p class="card-text" th:text="${artist.description}">Artist Biography</p>
-                    </div>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" th:src="${artist.musicUrl}" frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+
+<div class="page-hero">
+    <h1>Your recommendations</h1>
+    <p>Based on the artists you love, here's what we think you should hear next.</p>
+</div>
+
+<div class="recommend-grid">
+    <div class="rec-card" th:each="artist : ${recommendations}">
+        <img th:src="${artist.imgUrl}" alt="">
+        <div class="rec-card-body">
+            <h2 th:text="${artist.name + ' — ' + artist.genres}">Artist Name — Genre</h2>
+            <p th:text="${artist.description}">Artist biography</p>
+            <div class="rec-card-video">
+                <iframe th:src="${artist.musicUrl}" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
     </div>
-    <div style="text-align: center;">
-    <a th:href="@{/}" class="back-to-home">
-        <img src="/images/backarrow.png" alt="Back to Homepage" class="back-arrow">
-    </a>
-    </div>
-    <footer class="text-center text-white mt-auto">
-        <div class="footer-content">
-            <p>&copy; 2023 The Music Box | All Rights Reserved.</p>
-        </div>
-    </footer>
+</div>
+
+<a th:href="@{/}" class="back-link">
+    <img th:src="@{/images/backarrow.png}" alt="">
+    <span>Back to Home</span>
+</a>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
-
-
-
-
-
-
