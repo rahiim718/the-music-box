@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In Failed | The Music Box</title>
+    <title>Something's Missing | The Music Box</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
@@ -14,9 +14,9 @@
 <section class="error-page">
     <div>
         <p class="error-code">Oops</p>
-        <p class="error-message" th:text="${invalidInfo}">Invalid email address or password.</p>
-        <form th:action="@{/signform}" method="post">
-            <button type="submit" class="btn btn-primary">Back to Sign In</button>
+        <p class="error-message" th:text="${invalidInfo}">Please enter information in all required fields.</p>
+        <form th:action="@{/form}" method="post">
+            <button type="submit" class="btn btn-primary">Back to Sign Up</button>
         </form>
     </div>
 </section>
