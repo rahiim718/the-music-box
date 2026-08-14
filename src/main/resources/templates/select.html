@@ -14,7 +14,7 @@
 
 <div class="page-hero">
     <h1>Hello, <span th:text="${firstName.firstName}"></span>!</h1>
-    <p>Select up to 3 of your favorite artists below.</p>
+    <p>Select up to 3 favorite artists, then compare the original curated experience with live Last.fm matches.</p>
 </div>
 
 <form id="artistForm" method="post" th:action="@{/recommendations}" autocomplete="off" enctype="application/x-www-form-urlencoded">
@@ -36,7 +36,11 @@
         </div>
     </div>
     <div class="submit-button">
-        <button type="submit" form="artistForm" class="btn btn-primary btn-lg">Get Recommendations</button>
+        <button type="submit" form="artistForm" class="btn btn-ghost btn-lg"
+                th:formaction="@{/recommendations}">Original Genre Recommendations</button>
+        <button type="submit" form="artistForm" class="btn btn-primary btn-lg"
+                th:formaction="@{/recommendations/similar}">Live Last.fm Recommendations</button>
+        <p class="comparison-help">The original option uses The Music Box's curated artist database. The live option calls Last.fm and falls back safely if the service is unavailable.</p>
     </div>
 </form>
 

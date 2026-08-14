@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live Recommendations | The Music Box</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
+</head>
+<body>
+<div th:replace="~{fragments/nav :: nav}"></div>
+
+<div class="page-hero">
+    <span class="source-badge">Live Last.fm results</span>
+    <h1>Artists you may like</h1>
+    <p>Five live matches based on <span th:text="${selectedArtists}">your selections</span>.</p>
+</div>
+
+<div class="similar-grid">
+    <article class="similar-card" th:each="artist, artistStat : ${recommendations}">
+        <div class="similar-rank" th:text="${artistStat.count}">1</div>
+        <div class="similar-card-body">
+            <p class="match-label" th:text="${artist.similarityPercent + '% similar'}">90% similar</p>
+            <h2 th:text="${artist.name}">Artist name</h2>
+            <p>Recommended because you selected <strong th:text="${artist.basedOnArtist}">an artist</strong>.</p>
+            <p class="external-id" th:if="${artist.musicBrainzId != null and !artist.musicBrainzId.isEmpty()}">
+                MusicBrainz ID: <span th:text="${artist.musicBrainzId}"></span>
+            </p>
+        </div>
+        <a class="btn btn-ghost" th:href="${artist.lastFmUrl}" target="_blank" rel="noopener noreferrer">View on Last.fm</a>
+    </article>
+</div>
+
+<a th:href="@{/}" class="back-link">
+    <img th:src="@{/images/backarrow.png}" alt="">
+    <span>Back to Home</span>
+</a>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -411,7 +411,22 @@ h1, h2, h3 { font-family: var(--font-display); }
   font-weight: 600;
 }
 
-.submit-button { text-align: center; padding: 24px 0 64px; }
+.submit-button {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  text-align: center;
+  padding: 24px 20px 64px;
+}
+
+.comparison-help {
+  flex-basis: 100%;
+  max-width: 720px;
+  margin: 4px auto 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
 
 /* ---------- Recommendation cards ---------- */
 
@@ -496,6 +511,72 @@ h1, h2, h3 { font-family: var(--font-display); }
 }
 
 .rec-card-video.is-playing .video-play-btn { display: none; }
+
+.recommendation-notice {
+  max-width: 760px;
+  margin: 18px auto 0;
+  padding: 12px 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.source-badge {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.similar-grid {
+  display: grid;
+  gap: 18px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 24px 60px;
+}
+
+.similar-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.similar-rank {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.similar-card-body h2 { margin: 2px 0 8px; }
+.similar-card-body p { margin: 0; color: var(--text-muted); font-size: 0.88rem; }
+.similar-card-body strong { color: var(--text); }
+.similar-card-body .match-label { color: var(--accent); font-weight: 600; }
+.similar-card-body .external-id { margin-top: 9px; color: var(--text-faint); font-size: 0.72rem; }
+
+@media (max-width: 680px) {
+  .similar-card { grid-template-columns: auto 1fr; }
+  .similar-card .btn { grid-column: 1 / -1; width: 100%; }
+}
 
 /* ---------- Content pages (about / bio) ---------- */
 

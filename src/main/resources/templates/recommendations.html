@@ -14,6 +14,7 @@
 <div class="page-hero">
     <h1>Your recommendations</h1>
     <p>Based on the artists you love, here's what we think you should hear next.</p>
+    <p class="recommendation-notice" th:if="${recommendationNotice}" th:text="${recommendationNotice}"></p>
 </div>
 
 <div class="recommend-grid">
