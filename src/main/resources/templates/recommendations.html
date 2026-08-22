@@ -3,39 +3,56 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Recommendations | The Music Box</title>
+    <title>Curated Discovery Queue | The Music Box</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
 </head>
-<body>
+<body class="studio-body">
 <div th:replace="~{fragments/nav :: nav}"></div>
 
-<div class="page-hero">
-    <h1>Your recommendations</h1>
-    <p>Based on the artists you love, here's what we think you should hear next.</p>
+<main class="results-studio curated-studio">
+    <header class="results-hero">
+        <div>
+            <p class="studio-kicker">02 / Curated discovery</p>
+            <h1>Your discovery<br><span>queue.</span></h1>
+        </div>
+        <p>Hand-picked Music Box recommendations based on the genres and artists you already love.</p>
+    </header>
+
     <p class="recommendation-notice" th:if="${recommendationNotice}" th:text="${recommendationNotice}"></p>
-</div>
 
-<div class="recommend-grid">
-    <div class="rec-card" th:each="artist : ${recommendations}">
-        <img th:src="${artist.imgUrl}" alt="">
-        <div class="rec-card-body">
-            <h2 th:text="${artist.name + ' — ' + artist.genres}">Artist Name — Genre</h2>
-            <p th:text="${artist.description}">Artist biography</p>
+    <div class="curated-workspace">
+        <div class="result-list-heading">
+            <div>
+                <p class="studio-step-number">Selected for you</p>
+                <h2>Curated artists</h2>
+            </div>
+            <span th:text="${#lists.size(recommendations) + ' artists'}">Artists</span>
         </div>
-        <div class="rec-card-video" th:data-embed="${artist.musicUrl}">
-            <button type="button" class="video-play-btn" th:attr="aria-label='Play video: ' + ${artist.name}">
-                <span class="play-icon">&#9658;</span>
-            </button>
-        </div>
+
+        <section class="recommend-grid" aria-label="Curated recommendations">
+            <article class="rec-card" th:each="artist, artistStat : ${recommendations}">
+                <div class="rec-card-image">
+                    <img th:src="${artist.imgUrl}" th:alt="${artist.name}">
+                    <span class="rec-card-rank" th:text="${#numbers.formatInteger(artistStat.count, 2)}">01</span>
+                    <span class="rec-card-genre" th:text="${artist.genres}">Genre</span>
+                </div>
+                <div class="rec-card-body">
+                    <h2 th:text="${artist.name}">Artist name</h2>
+                    <p th:text="${artist.description}">Artist biography</p>
+                </div>
+                <div class="rec-card-video" th:data-embed="${artist.musicUrl}">
+                    <button type="button" class="video-play-btn" th:attr="aria-label='Play video: ' + ${artist.name}">
+                        <span class="play-icon">&#9658;</span>
+                    </button>
+                </div>
+            </article>
+        </section>
+
+        <a th:href="@{/}" class="studio-reset-link curated-reset-link">Start a new session <span aria-hidden="true">&#8599;</span></a>
     </div>
-</div>
-
-<a th:href="@{/}" class="back-link">
-    <img th:src="@{/images/backarrow.png}" alt="">
-    <span>Back to Home</span>
-</a>
+</main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 <script th:src="@{/js/recommendations.js}"></script>

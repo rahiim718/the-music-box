@@ -3,46 +3,85 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pick Your Artists | The Music Box</title>
+    <title>Discovery Studio | The Music Box</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
     <script th:src="@{/js/app.js}" defer></script>
 </head>
-<body>
+<body class="studio-body">
 <div th:replace="~{fragments/nav :: nav}"></div>
 
-<div class="page-hero">
-    <h1>Hello, <span th:text="${firstName.firstName}"></span>!</h1>
-    <p>Select up to 3 favorite artists, then compare the original curated experience with live Last.fm matches.</p>
-</div>
+<main class="discovery-studio">
+    <section class="studio-hero">
+        <p class="studio-kicker">Music Discovery Studio</p>
+        <h1>Shape your next<br><span>rotation.</span></h1>
+        <p class="studio-intro">Hello, <strong th:text="${firstName.firstName}">music lover</strong>. Choose the artists that already sound like you, then explore a curated mix or live Last.fm matches.</p>
+    </section>
 
-<form id="artistForm" method="post" th:action="@{/recommendations}" autocomplete="off" enctype="application/x-www-form-urlencoded">
-    <div class="artist-container">
-        <div class="artist" th:each="artist : ${featuredArtists}">
-            <label>
-                <div class="image-container">
-                    <img th:src="@{/images/{imageUrl}(imageUrl=${artist.imageUrl})}" alt="" width="200">
-                    <div class="genre" th:text="${artist.genre}"></div>
+    <form id="artistForm" class="studio-form" method="post" th:action="@{/recommendations}"
+          data-max-selected="3" autocomplete="off" enctype="application/x-www-form-urlencoded">
+        <section class="studio-controls" aria-labelledby="artist-step-title">
+            <div class="studio-step-heading">
+                <p class="studio-step-number">01 / Starting point</p>
+                <div>
+                    <h2 id="artist-step-title">Choose your artists</h2>
+                    <p>Pick up to three. We will use their genres and musical relationships to build your results.</p>
                 </div>
-                <input type="checkbox"
-                       th:id="${artist.name}"
-                       th:name="artist"
-                       th:value="${artist.name + '|' + artist.genre}"
-                       th:data-genre="${artist.genre}"
-                       style="display: none;">
-            </label>
-            <div class="artist-name" th:text="${artist.name}">Artist</div>
-        </div>
-    </div>
-    <div class="submit-button">
-        <button type="submit" form="artistForm" class="btn btn-ghost btn-lg"
-                th:formaction="@{/recommendations}">Original Genre Recommendations</button>
-        <button type="submit" form="artistForm" class="btn btn-primary btn-lg"
-                th:formaction="@{/recommendations/similar}">Live Last.fm Recommendations</button>
-        <p class="comparison-help">The original option uses The Music Box's curated artist database. The live option calls Last.fm and falls back safely if the service is unavailable.</p>
-    </div>
-</form>
+                <div class="selection-count" aria-live="polite">
+                    <strong><span data-selected-count>0</span>/3</strong>
+                    <span>selected</span>
+                </div>
+            </div>
+
+            <div class="studio-filter-row">
+                <label class="artist-search">
+                    <span>Search</span>
+                    <input type="search" data-artist-search placeholder="Artist or genre" autocomplete="off">
+                </label>
+                <div class="genre-filter-list" data-genre-filters aria-label="Filter artists by genre"></div>
+            </div>
+        </section>
+
+        <section class="artist-container" aria-label="Featured artists">
+            <article class="artist" th:each="artist : ${featuredArtists}"
+                     th:data-artist-name="${artist.name}" th:data-genre="${artist.genre}">
+                <label class="artist-select-card">
+                    <input class="artist-checkbox"
+                           type="checkbox"
+                           th:id="${artist.name}"
+                           th:name="artist"
+                           th:value="${artist.name + '|' + artist.genre}"
+                           th:data-artist-name="${artist.name}"
+                           th:data-genre="${artist.genre}">
+                    <span class="artist-card-visual">
+                        <img th:src="@{/images/{imageUrl}(imageUrl=${artist.imageUrl})}"
+                             th:alt="${artist.name}" width="320" height="400">
+                        <span class="artist-card-shade"></span>
+                        <span class="artist-card-copy">
+                            <span class="artist-genre" th:text="${artist.genre}">Genre</span>
+                            <strong class="artist-name" th:text="${artist.name}">Artist</strong>
+                        </span>
+                        <span class="artist-check" aria-hidden="true">&#10003;</span>
+                    </span>
+                </label>
+            </article>
+        </section>
+
+        <section class="studio-action-dock" aria-label="Recommendation options">
+            <div class="selection-summary">
+                <span>Your selection</span>
+                <strong data-selection-summary>Choose at least one artist to continue.</strong>
+            </div>
+            <div class="studio-actions">
+                <button type="submit" form="artistForm" class="btn btn-ghost"
+                        th:formaction="@{/recommendations}">Curated mix</button>
+                <button type="submit" form="artistForm" class="btn btn-primary"
+                        th:formaction="@{/recommendations/similar}">Discover live matches</button>
+            </div>
+        </section>
+    </form>
+</main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>

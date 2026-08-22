@@ -1,70 +1,134 @@
-// Wait for the DOM content to fully load
 document.addEventListener('DOMContentLoaded', function () {
-    // Define the maximum number of selectable checkboxes
-    const maxSelected = 3;
+    const form = document.getElementById('artistForm');
 
-    // Iterate over each label element within artist containers
-    document.querySelectorAll('.artist label').forEach(function(label) {
-        // Grab associated input and img elements from within the current label
-        let input = label.querySelector('input');
-        let img = label.querySelector('img');
-        
-        // Add event listener for change event on checkboxes
-        input.addEventListener('change', function() {
-            // Count checked checkboxes
-            let checkedCount = document.querySelectorAll('input[type=checkbox]:checked').length;
+    if (!form) {
+        return;
+    }
 
-            // Validate against maximum number of selectable checkboxes
-            if (checkedCount > maxSelected) {
-                // Uncheck the checkbox and display a warning
-                input.checked = false;
-                alert(`You can select up to ${maxSelected} artists only.`);
-            }
+    const maxSelected = Number(form.dataset.maxSelected || 3);
+    const artistCards = Array.from(form.querySelectorAll('.artist'));
+    const checkboxes = Array.from(form.querySelectorAll('input[name="artist"]'));
+    const selectedCount = form.querySelector('[data-selected-count]');
+    const selectionSummary = form.querySelector('[data-selection-summary]');
+    const submitButtons = Array.from(form.querySelectorAll('button[type="submit"]'));
+    const searchInput = form.querySelector('[data-artist-search]');
+    const genreFilters = form.querySelector('[data-genre-filters]');
+    let activeGenre = 'All';
 
-            // Toggle the 'selected' class on the image, based on whether the checkbox is checked
-            img.classList.toggle('selected', input.checked);
+    function checkedArtists() {
+        return checkboxes.filter(function (checkbox) {
+            return checkbox.checked;
+        });
+    }
+
+    function updateSelectionState() {
+        const selected = checkedArtists();
+
+        artistCards.forEach(function (card) {
+            const checkbox = card.querySelector('input[name="artist"]');
+            card.classList.toggle('is-selected', Boolean(checkbox && checkbox.checked));
         });
 
-        // Initialize the 'selected' class on the image based on whether the checkbox is checked on load
-        img.classList.toggle('selected', input.checked);
+        if (selectedCount) {
+            selectedCount.textContent = String(selected.length);
+        }
+
+        if (selectionSummary) {
+            const names = selected.map(function (checkbox) {
+                return checkbox.dataset.artistName || checkbox.value.split('|')[0];
+            });
+
+            selectionSummary.textContent = names.length
+                ? names.join(' · ')
+                : 'Choose at least one artist to continue.';
+        }
+
+        submitButtons.forEach(function (button) {
+            button.disabled = selected.length === 0;
+        });
+    }
+
+    function applyFilters() {
+        const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+
+        artistCards.forEach(function (card) {
+            const name = (card.dataset.artistName || '').toLowerCase();
+            const genre = card.dataset.genre || '';
+            const matchesSearch = !query || name.includes(query) || genre.toLowerCase().includes(query);
+            const matchesGenre = activeGenre === 'All' || genre === activeGenre;
+            card.hidden = !(matchesSearch && matchesGenre);
+        });
+    }
+
+    function buildGenreFilters() {
+        if (!genreFilters) {
+            return;
+        }
+
+        const genres = Array.from(new Set(artistCards.map(function (card) {
+            return card.dataset.genre;
+        }).filter(Boolean))).sort();
+
+        ['All'].concat(genres).forEach(function (genre) {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'genre-filter-chip';
+            button.textContent = genre;
+            button.dataset.genreFilter = genre;
+            button.setAttribute('aria-pressed', genre === 'All' ? 'true' : 'false');
+            button.addEventListener('click', function () {
+                activeGenre = genre;
+                genreFilters.querySelectorAll('.genre-filter-chip').forEach(function (chip) {
+                    chip.setAttribute('aria-pressed', String(chip === button));
+                });
+                applyFilters();
+            });
+            genreFilters.appendChild(button);
+        });
+    }
+
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            if (checkedArtists().length > maxSelected) {
+                checkbox.checked = false;
+                window.alert(`You can select up to ${maxSelected} artist${maxSelected === 1 ? '' : 's'} only.`);
+            }
+
+            updateSelectionState();
+        });
     });
 
-    document.getElementById('artistForm').addEventListener('submit', function(e) {
-        // Clear old hidden inputs (if any)
-        document.querySelectorAll('#artistForm input[name="genres"]').forEach(function(input) {
+    if (searchInput) {
+        searchInput.addEventListener('input', applyFilters);
+    }
+
+    form.addEventListener('submit', function (event) {
+        form.querySelectorAll('input[name="genres"]').forEach(function (input) {
             input.remove();
         });
 
-        // Get all checked checkboxes
-        var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
-        
-        // Check if at least one checkbox is checked
-        if (checkboxes.length > 0) {
-            // Create a Set to store unique genres
-            var genres = new Set();
-            
-            // Iterate through checkboxes to collect genres
-            checkboxes.forEach(function(checkbox) {
-                // Add the genre to the Set
-                genres.add(checkbox.getAttribute('data-genre'));
-            });
-            
-            // Add hidden inputs for each genre to the form
-            genres.forEach(function(genre) {
-                var input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'genres';
-                input.value = genre;
-                // Append the input to the form
-                e.target.appendChild(input);
-            });
-            
-            // Form will be submitted with the additional data
-        } else {
-            // Prevent form submission
-            e.preventDefault();
-            // Alert user to select at least one artist
-            alert('Please select at least one artist.');
+        const selected = checkedArtists();
+
+        if (selected.length === 0) {
+            event.preventDefault();
+            window.alert('Please select at least one artist.');
+            return;
         }
+
+        const genres = new Set(selected.map(function (checkbox) {
+            return checkbox.dataset.genre;
+        }).filter(Boolean));
+
+        genres.forEach(function (genre) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'genres';
+            input.value = genre;
+            form.appendChild(input);
+        });
     });
+
+    buildGenreFilters();
+    updateSelectionState();
+    applyFilters();
 });

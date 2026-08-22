@@ -3,39 +3,75 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Live Recommendations | The Music Box</title>
+    <title>Live Discovery Queue | The Music Box</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" th:href="@{/css/theme.css}" />
 </head>
-<body>
+<body class="studio-body">
 <div th:replace="~{fragments/nav :: nav}"></div>
 
-<div class="page-hero">
-    <span class="source-badge">Live Last.fm results</span>
-    <h1>Artists you may like</h1>
-    <p>Five live matches based on <span th:text="${selectedArtists}">your selections</span>.</p>
-</div>
-
-<div class="similar-grid">
-    <article class="similar-card" th:each="artist, artistStat : ${recommendations}">
-        <div class="similar-rank" th:text="${artistStat.count}">1</div>
-        <div class="similar-card-body">
-            <p class="match-label" th:text="${artist.similarityPercent + '% similar'}">90% similar</p>
-            <h2 th:text="${artist.name}">Artist name</h2>
-            <p>Recommended because you selected <strong th:text="${artist.basedOnArtist}">an artist</strong>.</p>
-            <p class="external-id" th:if="${artist.musicBrainzId != null and !artist.musicBrainzId.isEmpty()}">
-                MusicBrainz ID: <span th:text="${artist.musicBrainzId}"></span>
-            </p>
+<main class="results-studio">
+    <header class="results-hero">
+        <div>
+            <p class="studio-kicker">02 / Live discovery</p>
+            <h1>Your discovery<br><span>queue.</span></h1>
         </div>
-        <a class="btn btn-ghost" th:href="${artist.lastFmUrl}" target="_blank" rel="noopener noreferrer">View on Last.fm</a>
-    </article>
-</div>
+        <p>Fresh artist relationships from Last.fm, ranked by how closely they match your starting selections.</p>
+    </header>
 
-<a th:href="@{/}" class="back-link">
-    <img th:src="@{/images/backarrow.png}" alt="">
-    <span>Back to Home</span>
-</a>
+    <div class="results-workspace">
+        <aside class="results-sidebar">
+            <div class="results-sidebar-section">
+                <span class="sidebar-label">Source</span>
+                <span class="live-source"><i aria-hidden="true"></i> Last.fm live</span>
+            </div>
+            <div class="results-sidebar-section">
+                <span class="sidebar-label">Based on</span>
+                <strong th:text="${selectedArtists}">Your artists</strong>
+            </div>
+            <div class="results-sidebar-section">
+                <span class="sidebar-label">Ranking</span>
+                <strong>Closest match first</strong>
+                <p>Similarity comes from Last.fm's artist relationships.</p>
+            </div>
+            <a th:href="@{/}" class="studio-reset-link">Start a new session <span aria-hidden="true">&#8599;</span></a>
+        </aside>
+
+        <section class="result-list" aria-labelledby="top-matches-title">
+            <div class="result-list-heading">
+                <div>
+                    <p class="studio-step-number">Recommended for you</p>
+                    <h2 id="top-matches-title">Top matches</h2>
+                </div>
+                <span th:text="${#lists.size(recommendations) + ' artists'}">5 artists</span>
+            </div>
+
+            <article class="similar-card" th:each="artist, artistStat : ${recommendations}"
+                     th:classappend="${artistStat.first} ? 'is-top-match' : ''">
+                <div class="similar-rank" th:text="${#numbers.formatInteger(artistStat.count, 2)}">01</div>
+                <div class="similar-card-body">
+                    <div class="similar-card-title">
+                        <div>
+                            <p class="match-label" th:text="${artist.similarityPercent + '% match'}">90% match</p>
+                            <h2 th:text="${artist.name}">Artist name</h2>
+                        </div>
+                        <span class="top-match-label" th:if="${artistStat.first}">Best match</span>
+                    </div>
+                    <p>Connected to <strong th:text="${artist.basedOnArtist}">your artist</strong>.</p>
+                    <progress class="similarity-meter" max="100" th:value="${artist.similarityPercent}"
+                              th:attr="aria-label=${artist.name + ' similarity score'}">90%</progress>
+                    <p class="external-id" th:if="${artist.musicBrainzId != null and !artist.musicBrainzId.isEmpty()}">
+                        MusicBrainz <span th:text="${artist.musicBrainzId}"></span>
+                    </p>
+                </div>
+                <a class="result-action" th:href="${artist.lastFmUrl}" target="_blank" rel="noopener noreferrer">
+                    View artist <span aria-hidden="true">&#8599;</span>
+                </a>
+            </article>
+        </section>
+    </div>
+</main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
